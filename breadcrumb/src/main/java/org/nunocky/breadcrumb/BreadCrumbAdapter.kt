@@ -27,6 +27,7 @@ internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItem
     private var mBreadCrumbItemItemsData: MutableList<BreadCrumbItem> = mutableListOf()
     private var arrowDrawable: Int = R.drawable.ic_baseline_keyboard_arrow_right_24
     private var textColor: Int = Color.WHITE
+    private var focusedTextColor: Int = Color.WHITE
     private var textSize: Int = 14
     private var clickable: Boolean = true
     private var currentPosition: Int = 0
@@ -82,6 +83,11 @@ internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItem
         notifyDataSetChanged()
     }
 
+    fun setFocuedTextColor(textColor: Int) {
+        this.focusedTextColor = textColor
+        notifyDataSetChanged()
+    }
+
     fun setClickable(clickable: Boolean) {
         this.clickable = clickable
         notifyDataSetChanged()
@@ -117,8 +123,10 @@ internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItem
             breadCrumbTitle.text = item.title
 
             if (position == currentPosition) {
+                breadCrumbTitle.setTextColor(focusedTextColor)
                 breadCrumbTitle.typeface = Typeface.DEFAULT_BOLD
             } else {
+                breadCrumbTitle.setTextColor(textColor)
                 breadCrumbTitle.typeface = Typeface.DEFAULT
             }
 

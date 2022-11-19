@@ -42,6 +42,7 @@
             app:arrow_drawable="@drawable/ic_baseline_keyboard_arrow_right_24"
             app:clickable="true"
             app:entries="@array/breadcrumb_list1"
+            app:focused_text_color="#8f0000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
