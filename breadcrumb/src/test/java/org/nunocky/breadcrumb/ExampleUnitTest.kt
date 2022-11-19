@@ -1,4 +1,4 @@
-package us.smailbarkouch.android_breadcrumb
+package org.nunocky.breadcrumb
 
 import org.junit.Test
 

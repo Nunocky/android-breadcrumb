@@ -1,4 +1,4 @@
-package us.smailbarkouch.android_breadcrumb
+package org.nunocky.breadcrumb
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import us.smailbarkouch.android_breadcrumb.R
 
 private val diffCallback = object : DiffUtil.ItemCallback<String>() {
     override fun areItemsTheSame(oldItem: String, newItem: String) =

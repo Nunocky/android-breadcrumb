@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sample.databinding.ActivityMainBinding
-import us.smailbarkouch.android_breadcrumb.BreadCrumb
-import us.smailbarkouch.android_breadcrumb.BreadCrumbView
+import org.nunocky.breadcrumb.BreadCrumb
+import org.nunocky.breadcrumb.BreadCrumbView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

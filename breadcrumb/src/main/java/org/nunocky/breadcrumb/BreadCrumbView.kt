@@ -1,4 +1,4 @@
-package us.smailbarkouch.android_breadcrumb
+package org.nunocky.breadcrumb
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import us.smailbarkouch.android_breadcrumb.R
 
 data class BreadCrumb(
     val title: String
