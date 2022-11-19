@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import us.smailbarkouch.android_breadcrumb.R
 
-private val diffCallback = object : DiffUtil.ItemCallback<String>() {
-    override fun areItemsTheSame(oldItem: String, newItem: String) =
-        oldItem == newItem // check uniqueness
+private val diffCallback = object : DiffUtil.ItemCallback<BreadCrumb>() {
+    override fun areItemsTheSame(oldItem: BreadCrumb, newItem: BreadCrumb) =
+        oldItem.title == newItem.title // check uniqueness
 
-    override fun areContentsTheSame(oldItem: String, newItem: String) =
-        oldItem == newItem // check contents
+    override fun areContentsTheSame(oldItem: BreadCrumb, newItem: BreadCrumb) =
+        oldItem.title == newItem.title // check contents
 }
 
 internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickListener) :
-    ListAdapter<String, BreadCrumbAdapter.ViewHolder>(diffCallback) {
+    ListAdapter<BreadCrumb, BreadCrumbAdapter.ViewHolder>(diffCallback) {
 
     private var breadCrumbItemsData: MutableList<BreadCrumb> = mutableListOf()
     private var arrowDrawable: Int = R.drawable.ic_baseline_keyboard_arrow_right_24
