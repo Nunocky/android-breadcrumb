@@ -54,6 +54,8 @@ class BreadCrumbView : FrameLayout {
             val textColor = typedArray.getColor(R.styleable.BreadCrumbView_text_color, -1)
             val textSize = typedArray.getColor(R.styleable.BreadCrumbView_text_size, -1)
             val clickable = typedArray.getBoolean(R.styleable.BreadCrumbView_clickable, true)
+            val entriesId = typedArray.getResourceId(R.styleable.BreadCrumbView_entries, -1)
+
             typedArray.recycle()
 
             breadCrumbAdapter.setClickable(clickable)
@@ -66,6 +68,13 @@ class BreadCrumbView : FrameLayout {
             }
             if (textSize != -1) {
                 breadCrumbAdapter.setTextSize(textSize)
+            }
+
+            if (entriesId != -1) {
+                val entries = resources.getTextArray(entriesId)
+                entries.forEach {
+                    addBreadCrumbItem(BreadCrumb(it.toString()))
+                }
             }
         }
     }

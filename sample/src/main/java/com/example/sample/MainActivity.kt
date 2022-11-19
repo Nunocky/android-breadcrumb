@@ -16,14 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        // TODO entriesプロパティで指定できるようにする
-        binding.breadcrumbBar.apply {
-            addBreadCrumbItem(BreadCrumb(title = "Item 1"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 2"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 3"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 4"))
-        }
-
         binding.breadcrumbBar2.apply {
             addBreadCrumbItem(BreadCrumb(title = "Item 1"))
             addBreadCrumbItem(BreadCrumb(title = "Item 2"))
