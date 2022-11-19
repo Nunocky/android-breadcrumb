@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.sample.databinding.ActivityMainBinding
-import org.nunocky.breadcrumb.BreadCrumb
 import org.nunocky.breadcrumb.BreadCrumbView
+import org.nunocky.breadcrumb.BreadCrumbView.BreadCrumbItem
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,11 +17,11 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.breadcrumbBar2.apply {
-            addBreadCrumbItem(BreadCrumb(title = "Item 1"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 2"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 3"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 4"))
-            addBreadCrumbItem(BreadCrumb(title = "Item 5"))
+            addBreadCrumbItem(BreadCrumbItem(title = "Item 1"))
+            addBreadCrumbItem(BreadCrumbItem(title = "Item 2"))
+            addBreadCrumbItem(BreadCrumbItem(title = "Item 3"))
+            addBreadCrumbItem(BreadCrumbItem(title = "Item 4"))
+            addBreadCrumbItem(BreadCrumbItem(title = "Item 5"))
         }
 
         binding.breadcrumbBar.setOnItemClickListener(object : BreadCrumbView.OnItemClickListener {

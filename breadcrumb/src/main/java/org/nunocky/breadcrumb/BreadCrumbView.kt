@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import us.smailbarkouch.android_breadcrumb.R
 
-data class BreadCrumb(
-    val title: String
-)
 
 // TODO
 //  - focused_text_color対応
 //  -
 
 class BreadCrumbView : FrameLayout {
+    data class BreadCrumbItem(
+        val title: String
+    )
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
@@ -74,7 +74,7 @@ class BreadCrumbView : FrameLayout {
             if (entriesId != -1) {
                 val entries = resources.getTextArray(entriesId)
                 entries.forEach {
-                    addBreadCrumbItem(BreadCrumb(it.toString()))
+                    addBreadCrumbItem(BreadCrumbItem(it.toString()))
                 }
             }
         }
@@ -100,7 +100,7 @@ class BreadCrumbView : FrameLayout {
         addView(recyclerView, layoutParams)
     }
 
-    fun addBreadCrumbItem(item: BreadCrumb) {
+    fun addBreadCrumbItem(item: BreadCrumbItem) {
         breadCrumbAdapter.addBreadCrumbItem(item)
         recyclerView.smoothScrollToPosition(breadCrumbAdapter.getBreadCrumbItemsSize() - 1)
     }
@@ -110,7 +110,7 @@ class BreadCrumbView : FrameLayout {
     }
 
     fun setArrowDrawable(arrowDrawable: Int) = breadCrumbAdapter.setArrowDrawable(arrowDrawable)
-    fun setBreadCrumbItems(items: MutableList<BreadCrumb>) {
+    fun setBreadCrumbItems(items: MutableList<BreadCrumbItem>) {
         breadCrumbAdapter.setBreadCrumbItems(items)
         recyclerView.smoothScrollToPosition(breadCrumbAdapter.getBreadCrumbItemsSize() - 1)
     }

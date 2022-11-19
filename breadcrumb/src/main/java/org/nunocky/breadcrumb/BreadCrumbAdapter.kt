@@ -10,20 +10,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import org.nunocky.breadcrumb.BreadCrumbView.BreadCrumbItem
 import us.smailbarkouch.android_breadcrumb.R
 
-private val diffCallback = object : DiffUtil.ItemCallback<BreadCrumb>() {
-    override fun areItemsTheSame(oldItem: BreadCrumb, newItem: BreadCrumb) =
+private val diffCallback = object : DiffUtil.ItemCallback<BreadCrumbItem>() {
+    override fun areItemsTheSame(oldItem: BreadCrumbItem, newItem: BreadCrumbItem) =
         oldItem.title == newItem.title // check uniqueness
 
-    override fun areContentsTheSame(oldItem: BreadCrumb, newItem: BreadCrumb) =
+    override fun areContentsTheSame(oldItem: BreadCrumbItem, newItem: BreadCrumbItem) =
         oldItem.title == newItem.title // check contents
 }
 
 internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickListener) :
-    ListAdapter<BreadCrumb, BreadCrumbAdapter.ViewHolder>(diffCallback) {
+    ListAdapter<BreadCrumbItem, BreadCrumbAdapter.ViewHolder>(diffCallback) {
 
-    private var breadCrumbItemsData: MutableList<BreadCrumb> = mutableListOf()
+    private var mBreadCrumbItemItemsData: MutableList<BreadCrumbItem> = mutableListOf()
     private var arrowDrawable: Int = R.drawable.ic_baseline_keyboard_arrow_right_24
     private var textColor: Int = Color.WHITE
     private var textSize: Int = 14
@@ -36,33 +37,33 @@ internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItem
         )
     }
 
-    override fun getItemCount(): Int = breadCrumbItemsData.size
+    override fun getItemCount(): Int = mBreadCrumbItemItemsData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(breadCrumbItemsData[position], position)
+        holder.bind(mBreadCrumbItemItemsData[position], position)
     }
 
-    fun getBreadCrumbItem(position: Int) = breadCrumbItemsData[position]
+    fun getBreadCrumbItem(position: Int) = mBreadCrumbItemItemsData[position]
 
-    fun getBreadCrumbItemsSize(): Int = breadCrumbItemsData.size
+    fun getBreadCrumbItemsSize(): Int = mBreadCrumbItemItemsData.size
 
     fun removeLastBreadCrumbItem() {
-        breadCrumbItemsData.removeLast()
+        mBreadCrumbItemItemsData.removeLast()
         notifyDataSetChanged()
     }
 
     fun removeAllBreadCrumbItems() {
-        breadCrumbItemsData.removeAll { true }
+        mBreadCrumbItemItemsData.removeAll { true }
         notifyDataSetChanged()
     }
 
-    fun addBreadCrumbItem(item: BreadCrumb) {
-        breadCrumbItemsData.add(item)
+    fun addBreadCrumbItem(item: BreadCrumbItem) {
+        mBreadCrumbItemItemsData.add(item)
         notifyDataSetChanged()
     }
 
-    fun setBreadCrumbItems(items: MutableList<BreadCrumb>) {
-        breadCrumbItemsData = items
+    fun setBreadCrumbItems(items: MutableList<BreadCrumbItem>) {
+        mBreadCrumbItemItemsData = items
         notifyDataSetChanged()
     }
 
@@ -106,7 +107,7 @@ internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItem
             breadCrumbTitle.textSize = textSize.toFloat()
         }
 
-        fun bind(item: BreadCrumb, position: Int) {
+        fun bind(item: BreadCrumbItem, position: Int) {
             if (position == 0) {
                 breadCrumbSeparator.visibility = View.GONE
             } else {
