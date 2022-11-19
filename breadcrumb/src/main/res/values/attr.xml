@@ -3,10 +3,8 @@
     <declare-styleable name="BreadCrumbView">
         <attr name="clickable" format="boolean" />
         <attr name="arrow_drawable" format="reference|integer" />
-        <attr name="background_drawable" format="reference|integer" />
         <attr name="text_color" format="color" />
         <attr name="text_size" format="integer" />
         <attr name="focused_text_color" format="color" />
-        <attr name="focused_text_style" format="string" />
     </declare-styleable>
 </resources>

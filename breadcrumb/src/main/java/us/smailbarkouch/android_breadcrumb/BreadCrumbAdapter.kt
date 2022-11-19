@@ -1,35 +1,44 @@
 package us.smailbarkouch.android_breadcrumb
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickListener) : RecyclerView.Adapter<BreadCrumbAdapter.ViewHolder>() {
+private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+    override fun areItemsTheSame(oldItem: String, newItem: String) =
+        oldItem == newItem // check uniqueness
+
+    override fun areContentsTheSame(oldItem: String, newItem: String) =
+        oldItem == newItem // check contents
+}
+
+internal class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickListener) :
+    ListAdapter<String, BreadCrumbAdapter.ViewHolder>(diffCallback) {
 
     private var breadCrumbItemsData: MutableList<BreadCrumb> = mutableListOf()
     private var arrowDrawable: Int = R.drawable.ic_baseline_keyboard_arrow_right_24
-    private var textColor: Int = 10
-    private var textSize: Int = 10
+    private var textColor: Int = Color.WHITE
+    private var textSize: Int = 14
+    private var clickable: Boolean = true
+    private var currentPosition: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.bread_crumb_item, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.bread_crumb_item, parent, false)
+        )
     }
 
     override fun getItemCount(): Int = breadCrumbItemsData.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = breadCrumbItemsData[position]
-
-        if (position == 0) {
-            holder.breadCrumbSeparator.visibility = View.GONE
-        } else {
-            holder.breadCrumbSeparator.visibility = View.VISIBLE
-        }
-
-        holder.breadCrumbTitle.text = item.title
+        holder.bind(breadCrumbItemsData[position], position)
     }
 
     fun getBreadCrumbItem(position: Int) = breadCrumbItemsData[position]
@@ -71,6 +80,16 @@ class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickList
         notifyDataSetChanged()
     }
 
+    fun setClickable(clickable: Boolean) {
+        this.clickable = clickable
+        notifyDataSetChanged()
+    }
+
+    fun setPosition(position: Int) {
+        this.currentPosition = position
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(breadCrumbItem: View) : RecyclerView.ViewHolder(breadCrumbItem) {
         var breadCrumbTitle: TextView = itemView.findViewById(R.id.bread_crumb_title)
         var breadCrumbSeparator: ImageView = itemView.findViewById(R.id.bread_crumb_separator)
@@ -82,7 +101,26 @@ class BreadCrumbAdapter(var breadCrumbItemClickListener: BreadCrumbItemClickList
 
             breadCrumbSeparator.setImageResource(arrowDrawable)
             breadCrumbTitle.setTextColor(textColor)
+            breadCrumbSeparator.setColorFilter(textColor)
             breadCrumbTitle.textSize = textSize.toFloat()
+        }
+
+        fun bind(item: BreadCrumb, position: Int) {
+            if (position == 0) {
+                breadCrumbSeparator.visibility = View.GONE
+            } else {
+                breadCrumbSeparator.visibility = View.VISIBLE
+            }
+
+            breadCrumbTitle.text = item.title
+
+            if (position == currentPosition) {
+                breadCrumbTitle.typeface = Typeface.DEFAULT_BOLD
+            } else {
+                breadCrumbTitle.typeface = Typeface.DEFAULT
+            }
+
+            breadCrumbTitle.isClickable = clickable
         }
     }
 }

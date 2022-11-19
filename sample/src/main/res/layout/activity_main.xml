@@ -18,7 +18,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/breadcrumb_bar" />
+            app:layout_constraintTop_toBottomOf="@+id/breadcrumb_bar2" />
 
         <Button
             android:id="@+id/button2"
@@ -32,20 +32,39 @@
 
         <us.smailbarkouch.android_breadcrumb.BreadCrumbView
             android:id="@+id/breadcrumb_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_rect"
+            android:backgroundTint="#FF6363"
+            app:arrow_drawable="@drawable/ic_baseline_keyboard_arrow_right_24"
+            app:clickable="true"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:text_color="#ffffff"
+            app:text_size="14" />
+
+        <us.smailbarkouch.android_breadcrumb.BreadCrumbView
+            android:id="@+id/breadcrumb_bar2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_rect"
             app:arrow_drawable="@drawable/ic_baseline_keyboard_arrow_right_24"
-            app:background_drawable="@drawable/rounded_rect"
             app:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:text_color="@android:color/holo_blue_bright"
-            app:text_size="15" />
+            app:layout_constraintTop_toBottomOf="@+id/breadcrumb_bar"
+            app:text_color="#ffffff"
+            app:text_size="14" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
