@@ -27,12 +27,6 @@ class BreadCrumbView : FrameLayout {
     private lateinit var recyclerView: RecyclerView
     private lateinit var breadCrumbAdapter: BreadCrumbAdapter
 
-    private var _onItemClickListener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        _onItemClickListener = listener
-    }
-
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -95,9 +89,7 @@ class BreadCrumbView : FrameLayout {
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         breadCrumbAdapter = BreadCrumbAdapter(object : BreadCrumbItemClickListener {
-            override fun onItemClick(breadCrumbItem: View, position: Int) {
-                _onItemClickListener?.onItemClick(position)
-            }
+            override fun onItemClick(breadCrumbItem: View, position: Int) {}
         })
 
         recyclerView.adapter = breadCrumbAdapter
@@ -110,7 +102,7 @@ class BreadCrumbView : FrameLayout {
         recyclerView.smoothScrollToPosition(breadCrumbAdapter.getBreadCrumbItemsSize() - 1)
     }
 
-    fun setListener(listener: BreadCrumbItemClickListener) {
+    fun setItemClickListener(listener: BreadCrumbItemClickListener) {
         breadCrumbAdapter.breadCrumbItemClickListener = listener
     }
 
