@@ -11,18 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import us.smailbarkouch.android_breadcrumb.R
 
 
-// TODO
-//  - focused_text_color対応
-//  -
-
 class BreadCrumbView : FrameLayout {
     data class BreadCrumbItem(
         val title: String
     )
-
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var breadCrumbAdapter: BreadCrumbAdapter
