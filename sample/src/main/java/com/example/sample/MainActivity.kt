@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
             addBreadCrumbItem(BreadCrumbItem(title = "Item 2"))
             addBreadCrumbItem(BreadCrumbItem(title = "Item 3"))
             addBreadCrumbItem(BreadCrumbItem(title = "Item 4"))
-            addBreadCrumbItem(BreadCrumbItem(title = "Item 5"))
         }
 
         binding.breadcrumbBar.setOnItemClickListener(object : BreadCrumbView.OnItemClickListener {
