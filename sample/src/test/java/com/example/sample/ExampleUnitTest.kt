@@ -1,4 +1,4 @@
-package us.smailbarkouch.android_breadcrumb
+package com.example.sample
 
 import org.junit.Test
 

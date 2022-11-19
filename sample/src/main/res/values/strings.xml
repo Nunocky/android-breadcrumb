@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Sample</string>
+
+    <string-array name="breadcrumb_list1">
+        <item>Item 1</item>
+        <item>Item 2</item>
+        <item>Item 3</item>
+    </string-array>
+
+</resources>
