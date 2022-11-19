@@ -15,13 +15,22 @@ data class BreadCrumb(
 
 // TODO
 //  - focused_text_color対応
-//  - テキストクリック時のコールバック
 //  -
 
 class BreadCrumbView : FrameLayout {
 
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var breadCrumbAdapter: BreadCrumbAdapter
+
+    private var _onItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        _onItemClickListener = listener
+    }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -72,8 +81,7 @@ class BreadCrumbView : FrameLayout {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         breadCrumbAdapter = BreadCrumbAdapter(object : BreadCrumbItemClickListener {
             override fun onItemClick(breadCrumbItem: View, position: Int) {
-                // TODO イベントを上位に伝える
-                //this@BreadCrumbView.onItemClick(position)
+                _onItemClickListener?.onItemClick(position)
             }
         })
 
